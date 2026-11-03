@@ -1,0 +1,70 @@
+# Prüft bei jedem Push und liefert von main per rsync nach Hostpoint aus.
+# Solange die Secrets fehlen, wird nur geprüft. Benötigte Secrets (Umgebung «produktion»):
+#   SSH_HOST, SSH_USER, SSH_PRIVATE_KEY (eigener Deploy-Schlüssel, auf dem Server mit rrsync
+#   auf den Webordner beschränkt), SSH_KNOWN_HOSTS (geprüfte known_hosts-Zeile),
+#   SSH_TARGET_DIR (absoluter Pfad des Webordners)
+name: Prüfen und ausliefern
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-hackerman
+  cancel-in-progress: false
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b  # v5.3.0
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q tests
+      - name: Kein Klartext der Lösung im Repo
+        run: |
+          ! grep -rqiE '"video"|youtu' site/des-raetsels-loesung/geheim.json
+
+  ausliefern:
+    needs: pruefen
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    environment: produktion
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - name: Secrets vorhanden?
+        id: pruefen
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+        run: |
+          if [ -z "$SSH_HOST" ]; then echo "Keine Secrets, Ausliefern übersprungen."; echo "aktiv=nein" >> "$GITHUB_OUTPUT"; else echo "aktiv=ja" >> "$GITHUB_OUTPUT"; fi
+      - name: SSH vorbereiten
+        if: steps.pruefen.outputs.aktiv == 'ja'
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+          SSH_TARGET_DIR: ${{ secrets.SSH_TARGET_DIR }}
+        run: |
+          case "$SSH_TARGET_DIR" in /*hackerman*) ;; *) echo "SSH_TARGET_DIR muss absolut sein und hackerman enthalten" >&2; exit 1 ;; esac
+          test -n "$SSH_KNOWN_HOSTS" || { echo "Secret SSH_KNOWN_HOSTS fehlt" >&2; exit 1; }
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy && chmod 600 ~/.ssh/deploy
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts
+      - name: Hochladen
+        if: steps.pruefen.outputs.aktiv == 'ja'
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_TARGET_DIR: ${{ secrets.SSH_TARGET_DIR }}
+        run: |
+          rsync -rlptz --delete --chmod=D755,F644 \
+            -e "ssh -i ~/.ssh/deploy -o StrictHostKeyChecking=yes -o MACs=hmac-sha2-512" \
+            site/ "$SSH_USER@$SSH_HOST:$SSH_TARGET_DIR/"
+      - name: Schlüssel entfernen
+        if: always()
+        run: rm -f ~/.ssh/deploy

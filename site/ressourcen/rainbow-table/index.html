@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rainbow Table · Hackermans Cave</title>
+<meta name="description" content="Hackermans Cave: die Begleitseite zum EDU Breakout «Hackerman», einem Escape-Spiel zur Informatik im Zyklus 2.">
+<link rel="icon" href="../../assets/fackel.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/cave.css">
+<script src="../../assets/cave.js" defer></script>
+</head>
+<body>
+<header class="huelle kopf">
+  <canvas class="fackel" aria-hidden="true"></canvas>
+  <div class="titel">
+    <div class="h1"><a href="../../">Hackermans Cave</a></div>
+    <p>Eine Begleitseite zum EDU Breakout</p>
+  </div>
+  <canvas class="fackel" aria-hidden="true"></canvas>
+</header>
+<nav class="huelle menue" aria-label="Hauptmenü"><a class="knopf" href="../../">Videobotschaft</a> <a class="knopf" href="../../ressourcen/" aria-current="page">Ressourcen</a></nav>
+<main class="huelle">
+<section class="fenster">
+  <h2>Rainbow Table</h2>
+  <p>Passwörter werden nicht im Klartext gespeichert, sondern umgerechnet. Wer die Umrechnung häufiger Passwörter kennt, kann vergleichen.</p>
+  <div class="suche nicht-drucken">
+    <label class="sr" for="rainbow-suche">Zeichenfolge suchen</label>
+    <input id="rainbow-suche" type="search" placeholder="Zeichenfolge eingeben …" autocomplete="off" spellcheck="false">
+    <span class="anzahl" id="rainbow-anzahl" aria-live="polite"></span>
+    <button class="knopf" type="button" onclick="print()">Drucken</button>
+  </div>
+  <div class="tabelle-huelle">
+    <table id="rainbow">
+      <thead><tr><th scope="col">Klar-Passwort</th><th scope="col">SHA-1</th><th scope="col">MD4</th><th scope="col">Base64</th></tr></thead>
+      <tbody>
+      <tr><td>asdf</td><td>3da541559918a808c2402bba5012f6c60b27661c</td><td>970d28f4dd477bc184fbd10b376de753</td><td>YXNkZg==</td></tr>
+      <tr><td>asdf1234</td><td>f58cf5e7e10f195e21b553096d092c763ed18b0e</td><td>b8c2feb8d151fe3a66e84d8b69c96676</td><td>YXNkZjEyMzQ=</td></tr>
+      <tr><td>passwort</td><td>2e2b6533a81bc15430cf65de46dc097eeb5ba70c</td><td>4db5e609df53eeeac1d54db31bce5bf3</td><td>cGFzc3dvcnQ=</td></tr>
+      <tr><td>123456</td><td>7c4a8d09ca3762af61e59520943dc26494f8941b</td><td>585028aa0f794af812ee3be8804eb14a</td><td>MTIzNDU2</td></tr>
+      <tr><td>123456789</td><td>f7c3bc1d808e04732adf679965ccc34ca7ae3441</td><td>2ae523785d0caf4d2fb557c12016185c</td><td>MTIzNDU2Nzg5</td></tr>
+      <tr><td>1234</td><td>7110eda4d09e062aa5e4a390b0a572ac0d2c0220</td><td>f375f401ddc698af533f16f8ac1e91c1</td><td>MTIzNA==</td></tr>
+      <tr><td>abc123</td><td>6367c48dd193d56ea7b0baad25b19455e529f5ee</td><td>0ceb1fd260c35bd50005341532748de6</td><td>YWJjMTIz</td></tr>
+      <tr><td>000000</td><td>c984aed014aec7623a54f0591da07a85fd4b762d</td><td>bf85aaf547303397450fbc8ede0ec3a5</td><td>MDAwMDAw</td></tr>
+      <tr><td>111111</td><td>3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d</td><td>66a935da0da1f807cbce45957c2b20fd</td><td>MTExMTEx</td></tr>
+      <tr><td>123123</td><td>601f1889667efaebb33b8c12572835da3f027f78</td><td>4a4a963e47c7b8a3b355e0e0c90d0aa0</td><td>MTIzMTIz</td></tr>
+      <tr><td>142536</td><td>4b4e739494285f1e21c93ad201f6412ddd44644a</td><td>1d04aa3cf5e4a11d8a9a371af7ccb262</td><td>MTQyNTM2</td></tr>
+      <tr><td>1234567</td><td>20eabe5d64b0e216796e834f52d61fd0b70332fc</td><td>bf75555ca19051f694224f2f5e0b219d</td><td>MTIzNDU2Nw==</td></tr>
+      <tr><td>qwert</td><td>19b58543c85b97c5498edfd89c11c3aa8cb5fe51</td><td>b88eb67ef043e276263f58894df10c02</td><td>cXdlcnQ=</td></tr>
+      <tr><td>123qwe</td><td>05fe7461c607c33229772d402505601016a7d0ea</td><td>eed04614c00aac38ba23ec638db68590</td><td>MTIzcXdl</td></tr>
+      <tr><td>123asd</td><td>ec4c8836db96b8aca8381c7c64bb095ba46d5e28</td><td>a54e22f6bf7523758d6a214673700161</td><td>MTIzYXNk</td></tr>
+      <tr><td>q1w2e3r4</td><td>1fc854110e5532480000542834f453de31936c2f</td><td>04408cd6b1da3c3d646f71e2a708194d</td><td>cTF3MmUzcjQ=</td></tr>
+      <tr><td>PASSWORD</td><td>112bb791304791ddcf692e29fd5cf149b35fea37</td><td>649819068fc9f109b03c422a494549cd</td><td>UEFTU1dPUkQ=</td></tr>
+      <tr><td>geheim</td><td>906072001efddf3e11e6d2b5782f4777fe038739</td><td>5199a63299dacee34c68ae0d8bd2c71d</td><td>Z2VoZWlt</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="rot-x">ROT-X: geheim – zxaxbf; password – itllphkw; asdf – tlwy; abc – tuv; qwert – jpxkm;</p>
+</section>
+</main>
+<footer><div class="huelle">
+  <span>HACKERMANS CAVE · ein EDU Breakout von <a href="https://mius.ch/werkstueck/edubreakout-hakerman.html">MIus</a></span>
+  <span>Fehler gefunden? Melde sie an info@mius.ch · <a href="https://mius.ch/datenschutz.html">Datenschutz</a> · <a href="https://mius.ch/impressum.html">Impressum</a></span>
+</div></footer>
+</body>
+</html>

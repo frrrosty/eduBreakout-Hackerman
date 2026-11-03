@@ -1,0 +1,162 @@
+/* Hackermans Cave: dunkle Höhle, grüner Terminal-Schein, Pixelschrift.
+   Eine Spalte, oben Fackeln und Titel, darunter ein Terminalfenster. */
+@font-face { font-family: "Press Start 2P"; src: url("schriften/press-start-2p.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "VT323"; src: url("schriften/vt323.woff2") format("woff2"); font-display: swap; }
+
+:root {
+  --fels: #121412;
+  --fels-hell: #1b1f1b;
+  --nacht: #000;
+  --gruen: #6cf34a;
+  --gruen-dunkel: #2f7a22;
+  --gelb: #ffd24a;
+  --rot: #ff5a4a;
+  --text: #d7e8d2;
+  --leise: #8fa58a;
+  --pixel: "Press Start 2P", "Courier New", monospace;
+  --terminal: "VT323", "Courier New", monospace;
+  --breite: 980px;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; min-height: 100vh; color: var(--text); font: 22px/1.35 var(--terminal);
+  background-color: var(--fels);
+  background-image:
+    repeating-linear-gradient(135deg, transparent 0 6px, rgba(255,255,255,.025) 6px 8px),
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(0,0,0,.35) 6px 8px);
+}
+/* feine Bildschirmzeilen über allem */
+body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50;
+  background: repeating-linear-gradient(to bottom, rgba(0,0,0,.16) 0 1px, transparent 1px 3px);
+}
+a { color: var(--gruen); }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--gelb); outline-offset: 2px; }
+
+.huelle { max-width: var(--breite); margin: 0 auto; padding-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right)); }
+
+/* Kopf mit Fackeln */
+.kopf { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding-block: 28px 8px; }
+.fackel { width: 72px; height: 132px; image-rendering: pixelated; justify-self: center; }
+.titel { text-align: center; }
+.titel h1, .titel .h1 {
+  margin: 0; font: 400 clamp(18px, 4.4vw, 40px)/1.2 var(--pixel); color: var(--gruen);
+  text-shadow: 3px 3px 0 var(--gruen-dunkel), 0 0 18px rgba(108,243,74,.35); letter-spacing: .02em;
+}
+.titel a { text-decoration: none; }
+.titel p { margin: 14px 0 0; color: var(--leise); letter-spacing: .3em; font-size: 20px; text-transform: uppercase; }
+
+nav.menue { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; padding-block: 18px 22px; }
+.knopf {
+  display: inline-block; font: 400 12px/1 var(--pixel); color: #111; background: #d8d8d8; text-decoration: none;
+  padding: 10px 16px; border: 3px solid; border-color: #fff #777 #777 #fff; cursor: pointer;
+}
+.knopf:active, .knopf[aria-current="page"] { border-color: #777 #fff #fff #777; }
+.knopf.gruen { background: var(--gruen); }
+
+/* Terminalfenster */
+.fenster { background: var(--nacht); border: 2px solid var(--gruen); outline: 2px solid var(--nacht); box-shadow: 0 0 0 4px var(--gruen-dunkel), 0 0 40px rgba(108,243,74,.15); padding: clamp(18px, 5vw, 56px); margin-bottom: 40px; }
+.fenster h2 { font: 400 clamp(16px, 3vw, 24px)/1.3 var(--pixel); color: #fff; margin: 0 0 18px; }
+.fenster h3 { font: 400 14px/1.4 var(--pixel); color: var(--gruen); margin: 28px 0 10px; }
+.prompt { color: var(--gruen); min-height: 1.4em; margin: 0 0 14px; }
+.prompt::after { content: "█"; animation: blinken 1s steps(1) infinite; margin-left: 2px; }
+@keyframes blinken { 50% { opacity: 0; } }
+p { margin: 0 0 12px; max-width: 70ch; }
+
+/* Video erst nach Klick */
+.video { position: relative; aspect-ratio: 16 / 9; width: 100%; max-width: 100%; background: #050805; border: 1px solid var(--gruen-dunkel); }
+.video button {
+  position: absolute; inset: 0; width: 100%; display: grid; place-content: center; gap: 12px; text-align: center;
+  background: radial-gradient(circle at 50% 45%, #10260c, #000 70%); color: var(--text); border: 0; cursor: pointer; font: 20px/1.3 var(--terminal); padding: 20px;
+}
+.video button .spiel { font: 400 clamp(14px, 2.4vw, 20px)/1.3 var(--pixel); color: var(--gruen); }
+.video button small { color: var(--leise); font-size: 17px; max-width: 46ch; margin: 0 auto; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* Teil des Spiels: Link schwarz auf schwarz */
+.versteckt { color: #000; background: #000; font-size: clamp(28px, 7vw, 67px); line-height: 1.1; margin: 120px 0 0; overflow-wrap: anywhere; font-family: var(--terminal); }
+.versteckt a { color: #000; text-decoration: none; }
+.versteckt ::selection { background: var(--gruen); color: #000; }
+
+/* Kartenübersicht der Werkzeuge */
+.karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 18px; }
+.karte { display: grid; gap: 8px; align-content: start; padding: 18px; border: 2px solid var(--gruen-dunkel); background: #050905; color: var(--text); text-decoration: none; }
+.karte:hover { border-color: var(--gruen); box-shadow: 0 0 18px rgba(108,243,74,.2); }
+.karte .zeichen { font: 400 28px/1 var(--pixel); color: var(--gruen); }
+.karte b { font: 400 13px/1.4 var(--pixel); color: #fff; }
+.karte span { color: var(--leise); }
+.links { margin: 0; padding-left: 1.2em; }
+
+/* Rainbow Table */
+.suche { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 0 0 14px; }
+.suche input { flex: 1 1 260px; min-width: 0; font: 24px var(--terminal); color: var(--gruen); background: #000; border: 2px solid var(--gruen-dunkel); padding: 6px 10px; }
+.tabelle-huelle { overflow-x: auto; border: 1px solid var(--gruen-dunkel); }
+table { border-collapse: collapse; width: 100%; font: 18px/1.2 var(--terminal); }
+th, td { padding: 6px 10px; border-bottom: 1px solid #143010; text-align: left; white-space: nowrap; }
+th { font: 400 10px/1.4 var(--pixel); color: var(--gruen); background: #071407; position: sticky; top: 0; }
+td:first-child { color: #fff; font-weight: bold; }
+tr.treffer td { background: #163a10; color: var(--gelb); }
+.rot-x { color: var(--leise); margin-top: 12px; overflow-wrap: anywhere; }
+.anzahl { color: var(--leise); }
+
+/* Cäsarscheibe */
+.scheibe-feld { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 24px; align-items: center; }
+.scheibe { width: 100%; max-width: 420px; aspect-ratio: 1; touch-action: none; cursor: grab; user-select: none; }
+.scheibe:active { cursor: grabbing; }
+.scheibe text { font-family: var(--pixel); font-size: 15px; text-anchor: middle; dominant-baseline: central; }
+.steuerung { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.verschiebung { font: 400 22px/1 var(--pixel); color: var(--gelb); }
+
+/* Binärkarten */
+.binaer { display: flex; flex-wrap: wrap; gap: 10px; }
+.bitkarte { width: 92px; aspect-ratio: 3 / 4; display: grid; place-content: center; gap: 6px; text-align: center; border: 2px solid var(--gruen); background: #fff; color: #000; cursor: pointer; font: 18px var(--terminal); }
+.bitkarte .wert { font: 400 18px var(--pixel); }
+.bitkarte .punkte { display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; max-width: 70px; }
+.bitkarte .punkte i { width: 6px; height: 6px; border-radius: 50%; background: #000; }
+.bitkarte[aria-pressed="false"] { background: #0b130b; color: var(--leise); border-color: var(--gruen-dunkel); }
+.bitkarte[aria-pressed="false"] .wert, .bitkarte[aria-pressed="false"] .punkte { visibility: hidden; }
+.bitkarte .bit { font: 400 14px var(--pixel); }
+.summe { margin-top: 14px; font: 400 16px/1.5 var(--pixel); color: var(--gelb); }
+
+/* Pixelraster */
+.raster-feld { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 24px; align-items: start; }
+.raster { display: grid; grid-template-columns: repeat(var(--n, 8), 1fr); width: 100%; max-width: 360px; aspect-ratio: 1; border: 2px solid var(--gruen); background: #444; gap: 1px; }
+.raster button { border: 0; padding: 0; background: #fff; cursor: pointer; }
+.farben { display: flex; gap: 8px; flex-wrap: wrap; }
+.farbe { width: 44px; height: 44px; border: 3px solid #444; cursor: pointer; }
+.farbe[aria-pressed="true"] { border-color: var(--gelb); }
+
+/* Lösung */
+.schloss { display: flex; gap: 10px; flex-wrap: wrap; }
+.schloss input { flex: 1 1 240px; min-width: 0; font: 26px var(--terminal); color: var(--gruen); background: #000; border: 2px solid var(--gruen-dunkel); padding: 6px 10px; letter-spacing: .1em; }
+.meldung { min-height: 1.4em; margin-top: 12px; }
+.meldung.fehler { color: var(--rot); }
+.meldung.gut { color: var(--gruen); }
+
+footer { padding-block: 24px 40px; color: var(--leise); font-size: 18px; }
+footer .huelle { border-top: 1px solid #2a2f2a; padding-top: 16px; display: grid; gap: 4px; }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@media (max-width: 720px) {
+  .kopf { grid-template-columns: 1fr; }
+  .fackel { display: none; }
+  .scheibe-feld, .raster-feld { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .prompt::after { animation: none; }
+}
+
+/* Drucken: weisses Papier, keine Effekte */
+@media print {
+  body { background: #fff; color: #000; font-size: 14pt; }
+  body::after, .kopf, nav.menue, footer, .nicht-drucken { display: none !important; }
+  .fenster { border: 0; box-shadow: none; outline: 0; padding: 0; background: #fff; }
+  .fenster h2, .fenster h3, th, td, td:first-child { color: #000; background: #fff; }
+  .tabelle-huelle { overflow: visible; border: 0; }
+  th, td { border-bottom: 1px solid #999; white-space: normal; }
+  a { color: #000; }
+}

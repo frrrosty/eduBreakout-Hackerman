@@ -1,0 +1,33 @@
+# Hackermans Cave auf Hostpoint: statische Seite ohne PHP und ohne Datenbank.
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Adressen der alten WordPress-Seite
+  RewriteRule ^videobotschaft/?$ / [L,R=301]
+  RewriteRule ^wp-content/uploads/2020/05/RAIINBOW-TABLE.*$ /ressourcen/rainbow-table/ [L,R=301]
+  RewriteRule ^wp-content/uploads/2020/06/c.*sarscheibe.*$ /ressourcen/caesarscheibe/ [L,R=301]
+  RewriteRule ^wp-content/uploads/2020/05/binaerzahlen.*$ /ressourcen/binaerzahlen/ [L,R=301]
+  RewriteRule ^feed/?$ / [L,R=301]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://www.youtube-nocookie.com; base-uri 'none'; form-action 'self'; frame-ancestors 'self'"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Strict-Transport-Security "max-age=31536000"
+  <FilesMatch "\.(woff2|svg)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.(html|json)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+AddType font/woff2 .woff2
+AddType application/json .json

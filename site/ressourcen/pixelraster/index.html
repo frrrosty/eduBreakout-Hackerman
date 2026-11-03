@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pixelraster · Hackermans Cave</title>
+<meta name="description" content="Hackermans Cave: die Begleitseite zum EDU Breakout «Hackerman», einem Escape-Spiel zur Informatik im Zyklus 2.">
+<link rel="icon" href="../../assets/fackel.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/cave.css">
+<script src="../../assets/cave.js" defer></script>
+</head>
+<body>
+<header class="huelle kopf">
+  <canvas class="fackel" aria-hidden="true"></canvas>
+  <div class="titel">
+    <div class="h1"><a href="../../">Hackermans Cave</a></div>
+    <p>Eine Begleitseite zum EDU Breakout</p>
+  </div>
+  <canvas class="fackel" aria-hidden="true"></canvas>
+</header>
+<nav class="huelle menue" aria-label="Hauptmenü"><a class="knopf" href="../../">Videobotschaft</a> <a class="knopf" href="../../ressourcen/" aria-current="page">Ressourcen</a></nav>
+<main class="huelle">
+<section class="fenster">
+  <h2>Pixelraster</h2>
+  <p>Ein Bild besteht aus vielen kleinen Feldern, den Pixeln. Wähle eine Farbe und male die Felder aus.</p>
+  <div class="raster-feld">
+    <div class="raster" id="raster"></div>
+    <div>
+      <div class="farben nicht-drucken" role="group" aria-label="Farbe wählen">
+        <button class="farbe" type="button" data-farbe="s" style="background:#000" aria-pressed="true" aria-label="Schwarz"></button>
+        <button class="farbe" type="button" data-farbe="w" style="background:#fff" aria-pressed="false" aria-label="Weiss"></button>
+        <button class="farbe" type="button" data-farbe="g" style="background:#2bb24c" aria-pressed="false" aria-label="Grün"></button>
+        <button class="farbe" type="button" data-farbe="r" style="background:#e2362b" aria-pressed="false" aria-label="Rot"></button>
+      </div>
+      <p>s = schwarz, w = weiss, g = grün, r = rot</p>
+      <div class="steuerung nicht-drucken"><button class="knopf" type="button" id="raster-leeren">Raster leeren</button> <button class="knopf" type="button" onclick="print()">Drucken</button></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="huelle">
+  <span>HACKERMANS CAVE · ein EDU Breakout von <a href="https://mius.ch/werkstueck/edubreakout-hakerman.html">MIus</a></span>
+  <span>Fehler gefunden? Melde sie an info@mius.ch · <a href="https://mius.ch/datenschutz.html">Datenschutz</a> · <a href="https://mius.ch/impressum.html">Impressum</a></span>
+</div></footer>
+</body>
+</html>

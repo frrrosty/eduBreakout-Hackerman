@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cäsarscheibe · Hackermans Cave</title>
+<meta name="description" content="Hackermans Cave: die Begleitseite zum EDU Breakout «Hackerman», einem Escape-Spiel zur Informatik im Zyklus 2.">
+<link rel="icon" href="../../assets/fackel.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/cave.css">
+<script src="../../assets/cave.js" defer></script>
+</head>
+<body>
+<header class="huelle kopf">
+  <canvas class="fackel" aria-hidden="true"></canvas>
+  <div class="titel">
+    <div class="h1"><a href="../../">Hackermans Cave</a></div>
+    <p>Eine Begleitseite zum EDU Breakout</p>
+  </div>
+  <canvas class="fackel" aria-hidden="true"></canvas>
+</header>
+<nav class="huelle menue" aria-label="Hauptmenü"><a class="knopf" href="../../">Videobotschaft</a> <a class="knopf" href="../../ressourcen/" aria-current="page">Ressourcen</a></nav>
+<main class="huelle">
+<section class="fenster">
+  <h2>Cäsarscheibe</h2>
+  <p>Schon Julius Cäsar verschickte geheime Botschaften: Jeder Buchstabe wird um gleich viele Stellen im Alphabet verschoben. Drehe die innere Scheibe.</p>
+  <div class="scheibe-feld">
+    <svg id="scheibe" class="scheibe" viewBox="-6 -14 412 420" role="img" aria-label="Cäsarscheibe: Mit den Pfeiltasten drehen" tabindex="0"></svg>
+    <div>
+      <p class="verschiebung" id="verschiebung" aria-live="polite">ROT-0</p>
+      <p id="scheibe-hinweis"></p>
+      <div class="steuerung nicht-drucken">
+        <button class="knopf" type="button" id="links" aria-label="Innere Scheibe nach links drehen">◀</button>
+        <button class="knopf" type="button" id="rechts" aria-label="Innere Scheibe nach rechts drehen">▶</button>
+        <button class="knopf" type="button" id="zurueck">Zurücksetzen</button>
+        <button class="knopf" type="button" onclick="print()">Drucken</button>
+      </div>
+      <p class="anzahl">Tipp: Ziehen mit Maus oder Finger dreht die Scheibe auch.</p>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="huelle">
+  <span>HACKERMANS CAVE · ein EDU Breakout von <a href="https://mius.ch/werkstueck/edubreakout-hakerman.html">MIus</a></span>
+  <span>Fehler gefunden? Melde sie an info@mius.ch · <a href="https://mius.ch/datenschutz.html">Datenschutz</a> · <a href="https://mius.ch/impressum.html">Impressum</a></span>
+</div></footer>
+</body>
+</html>

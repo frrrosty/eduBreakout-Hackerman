@@ -1,0 +1,7 @@
+{
+  "verfahren": "PBKDF2-SHA256 + AES-256-GCM",
+  "runden": 300000,
+  "salz": "nODnl0vNbqPp9EgWnozChA==",
+  "iv": "N2tIHUA6lhKr9645",
+  "daten": "rfC4No8ndJepUSDnNwHv2OD17hdQ6K3QQ1kUFWOY0J+7mUE7PpOI7MJ+uFWhVieQwyH35u5jziItT9SN+ub0sjeV7nw="
+}
