@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Farbmischer · Hackermans Cave</title>
+<meta name="description" content="Hackermans Cave: die Begleitseite zum EDU Breakout «Hackerman», einem Escape-Spiel zur Informatik im Zyklus 2.">
+<link rel="icon" href="../../assets/fackel.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/cave.css">
+<script src="../../assets/cave.js" defer></script>
+</head>
+<body>
+<header class="huelle kopf">
+  <canvas class="fackel" aria-hidden="true"></canvas>
+  <div class="titel">
+    <div class="h1"><a href="../../">Hackermans Cave</a></div>
+    <p>Eine Begleitseite zum EDU Breakout</p>
+  </div>
+  <canvas class="fackel" aria-hidden="true"></canvas>
+</header>
+<nav class="huelle menue" aria-label="Hauptmenü"><a class="knopf" href="../../">Videobotschaft</a> <a class="knopf" href="../../ressourcen/" aria-current="page">Ressourcen</a></nav>
+<main class="huelle">
+<section class="fenster">
+  <h2>Farbmischer</h2>
+  <p>Ein Bildschirm mischt jede Farbe aus rotem, grünem und blauem Licht. Jede der drei Lampen hat 256 Stufen, von 0 (aus) bis 255 (ganz hell). Der Computer speichert die Farbe als Zahlen.</p>
+  <div class="mischer">
+    <div class="farbfeld" id="farbfeld"></div>
+    <div class="regler">
+      <label>Rot <input type="range" min="0" max="255" value="255" data-kanal="r"></label>
+      <label>Grün <input type="range" min="0" max="255" value="210" data-kanal="g"></label>
+      <label>Blau <input type="range" min="0" max="255" value="74" data-kanal="b"></label>
+    </div>
+  </div>
+  <div class="tabelle-huelle"><table id="farb-zahlen"></table></div>
+  <p class="anzahl">Was passiert, wenn alle drei auf 255 stehen? Und wenn alle auf 0 stehen?</p>
+</section>
+</main>
+<footer><div class="huelle">
+  <span>HACKERMANS CAVE · ein EDU Breakout von <a href="https://mius.ch/werkstueck/edubreakout-hakerman.html">MIus</a></span>
+  <span>Fehler gefunden? Melde sie an info@mius.ch · <a href="https://mius.ch/datenschutz.html">Datenschutz</a> · <a href="https://mius.ch/impressum.html">Impressum</a></span>
+</div></footer>
+</body>
+</html>

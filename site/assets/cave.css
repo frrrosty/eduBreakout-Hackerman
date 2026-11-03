@@ -160,3 +160,84 @@ footer .huelle { border-top: 1px solid #2a2f2a; padding-top: 16px; display: grid
   th, td { border-bottom: 1px solid #999; white-space: normal; }
   a { color: #000; }
 }
+
+/* ---------- Neue Werkzeuge ---------- */
+.signal { min-height: 1.6em; font: 400 18px/1.6 var(--pixel); color: var(--gelb); overflow-wrap: anywhere; }
+.auswahl { font: 20px var(--terminal); background: #000; color: var(--gruen); border: 2px solid var(--gruen-dunkel); padding: 4px 8px; }
+input[type="range"] { accent-color: var(--gruen); width: min(100%, 260px); }
+button:disabled { opacity: .45; cursor: not-allowed; }
+
+/* Morse */
+.morse-tafel { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; }
+.morse-zeichen { display: grid; gap: 4px; padding: 8px; background: #050905; border: 2px solid var(--gruen-dunkel); color: var(--text); cursor: pointer; text-align: center; font: 22px var(--terminal); }
+.morse-zeichen b { font: 400 16px var(--pixel); color: #fff; }
+.morse-zeichen span { color: var(--gelb); letter-spacing: .15em; font-size: 26px; }
+.morse-zeichen:hover { border-color: var(--gruen); }
+.taste { min-width: 140px; padding-block: 18px; touch-action: none; user-select: none; }
+.taste.gedrueckt { background: var(--gelb); border-color: #777 #fff #fff #777; }
+
+/* Freimaurer */
+.pigpen { width: 40px; height: 40px; stroke: currentColor; stroke-width: 3; stroke-linecap: square; fill: currentColor; }
+.pigpen g { fill: none; }
+.pigpen-schluessel { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 8px; color: var(--gruen); }
+.pigpen-paar { display: grid; justify-items: center; gap: 4px; padding: 6px; border: 1px solid #143010; }
+.pigpen-paar b { font: 400 13px var(--pixel); color: #fff; }
+.pigpen-tasten { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.pigpen-tasten .knopf { min-width: 40px; padding: 10px 8px; }
+.pigpen-text { display: flex; flex-wrap: wrap; gap: 4px; min-height: 64px; padding: 10px; border: 2px dashed var(--gruen-dunkel); margin-bottom: 12px; color: #fff; }
+.pigpen-luecke { width: 24px; }
+
+/* Skytale */
+.skytale-stab td { text-align: center; font: 400 15px var(--pixel); padding: 8px 6px; }
+.streifen { display: flex; flex-wrap: nowrap; gap: 0; border: 2px solid var(--gruen-dunkel); padding: 0; width: fit-content; max-width: 100%; overflow-x: auto; background: #e9dcc0; }
+[data-befehl] { font-size: 18px; min-width: 52px; }
+.streifen span { font: 400 15px var(--pixel); padding: 8px 5px; border-right: 1px dashed #b39c70; }
+td.windung-0, .streifen .windung-0 { color: #b3261e; }
+td.windung-1, .streifen .windung-1 { color: #1f5fbf; }
+td.windung-2, .streifen .windung-2 { color: #1d7a2c; }
+td.windung-3, .streifen .windung-3 { color: #7a3fb0; }
+.skytale-stab td { background: #e9dcc0; }
+
+/* Farbmischer */
+.mischer { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 24px; align-items: center; margin-bottom: 16px; }
+.farbfeld { aspect-ratio: 1; border: 2px solid var(--gruen); display: grid; place-content: center; font: 400 16px var(--pixel); }
+.regler { display: grid; gap: 14px; }
+.regler label { display: grid; gap: 4px; }
+
+/* Sortiernetz */
+.netz-huelle { overflow-x: auto; }
+.netz { width: 100%; min-width: 520px; max-width: 760px; }
+.netz .draht { stroke: var(--gruen-dunkel); stroke-width: 3; }
+.netz .bruecke { stroke: #8fa58a; stroke-width: 3; }
+.netz .knoten { fill: #8fa58a; }
+.netz .aktiv { stroke: var(--gelb); fill: var(--gelb); }
+.netz .marke { fill: #000; stroke: var(--gruen); stroke-width: 2; }
+.netz .zahl { fill: #fff; font: 400 14px var(--pixel); text-anchor: middle; dominant-baseline: central; }
+
+/* Richtungscode */
+.labyrinth { display: grid; grid-template-columns: repeat(var(--n, 7), 1fr); width: 100%; max-width: 360px; aspect-ratio: 1; border: 2px solid var(--gruen); }
+.labyrinth div { display: grid; place-content: center; font-size: clamp(18px, 4vw, 30px); color: var(--gelb); }
+.labyrinth .wand { background: #2b2f2b; box-shadow: inset 0 0 0 1px #3a403a; }
+.labyrinth .weg { background: #050905; }
+.labyrinth .figur { color: var(--gruen); }
+
+/* Paritätstrick */
+.raster.paritaet button.schwarz { background: #000; }
+.raster.paritaet button.weiss { background: #fff; }
+.raster.paritaet button.leer { background: #1b1f1b; cursor: default; }
+.raster.paritaet button.gefunden { outline: 4px solid var(--gelb); outline-offset: -4px; animation: blinken 1s steps(1) 3; }
+details summary { cursor: pointer; color: var(--gruen); margin: 12px 0 8px; }
+
+@media (max-width: 720px) {
+  .mischer { grid-template-columns: minmax(0, 1fr); }
+  .farbfeld { max-width: 260px; }
+}
+@media print {
+  .morse-zeichen, .pigpen-paar { border-color: #999; background: #fff; color: #000; }
+  .morse-zeichen b, .morse-zeichen span, .pigpen-paar b, .pigpen-schluessel, .pigpen-text { color: #000; }
+  .pigpen-text { border-color: #999; }
+  .streifen span, .skytale-stab td { color: #000 !important; }
+  .netz .draht, .netz .bruecke { stroke: #000; } .netz .knoten { fill: #000; }
+  .netz .marke { fill: #fff; stroke: #000; } .netz .zahl { fill: #000; }
+  .labyrinth .wand { background: #888; } .labyrinth .weg { background: #fff; }
+}

@@ -12,6 +12,10 @@ site/                         was auf den Server kommt
     caesarscheibe/            Rätsel 2.7, drehbar
     binaerzahlen/             Rätsel 2.4, Binärkarten
     pixelraster/              Rätsel 2.5, 8 × 8 zum Ausmalen
+    morsecode/ freimaurer/ skytale/      weitere Geheimschriften
+    farbmischer/                         Zahlen und Bilder
+    sortiernetz/ richtungscode/          Algorithmen
+    paritaet/ pruefziffer/               Daten prüfen
   des-raetsels-loesung/       Rätsel 2.10, Lösung verschlüsselt in geheim.json
   404.html, .htaccess, robots.txt
   assets/                     cave.css, cave.js, Schriften (OFL), Favicon

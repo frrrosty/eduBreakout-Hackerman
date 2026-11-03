@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Richtungscode · Hackermans Cave</title>
+<meta name="description" content="Hackermans Cave: die Begleitseite zum EDU Breakout «Hackerman», einem Escape-Spiel zur Informatik im Zyklus 2.">
+<link rel="icon" href="../../assets/fackel.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/cave.css">
+<script src="../../assets/cave.js" defer></script>
+</head>
+<body>
+<header class="huelle kopf">
+  <canvas class="fackel" aria-hidden="true"></canvas>
+  <div class="titel">
+    <div class="h1"><a href="../../">Hackermans Cave</a></div>
+    <p>Eine Begleitseite zum EDU Breakout</p>
+  </div>
+  <canvas class="fackel" aria-hidden="true"></canvas>
+</header>
+<nav class="huelle menue" aria-label="Hauptmenü"><a class="knopf" href="../../">Videobotschaft</a> <a class="knopf" href="../../ressourcen/" aria-current="page">Ressourcen</a></nav>
+<main class="huelle">
+<section class="fenster">
+  <h2>Richtungscode</h2>
+  <p>Hackerman will zum Schatz. Schreibe ihm ein Programm aus Pfeilen und starte es. Jeder Pfeil bewegt ihn ein Feld weit. In die Wände kann er nicht.</p>
+  <div class="raster-feld">
+    <div class="labyrinth" id="labyrinth" role="img" aria-label="Labyrinth"></div>
+    <div>
+      <div class="steuerung nicht-drucken" role="group" aria-label="Befehle">
+        <button class="knopf" type="button" data-befehl="O" aria-label="nach oben">▲</button>
+        <button class="knopf" type="button" data-befehl="L" aria-label="nach links">◀</button>
+        <button class="knopf" type="button" data-befehl="R" aria-label="nach rechts">▶</button>
+        <button class="knopf" type="button" data-befehl="U" aria-label="nach unten">▼</button>
+      </div>
+      <p class="signal" id="programm" aria-live="polite"></p>
+      <div class="steuerung nicht-drucken">
+        <button class="knopf gruen" type="button" id="programm-los">Los</button>
+        <button class="knopf" type="button" id="programm-zurueck">Zurück</button>
+        <button class="knopf" type="button" id="programm-leeren">Löschen</button>
+      </div>
+      <p class="meldung" id="programm-meldung" aria-live="polite"></p>
+      <div class="steuerung nicht-drucken">
+        <label for="level">Labyrinth:</label>
+        <select id="level" class="auswahl"><option value="0">1 · leicht</option><option value="1">2 · mittel</option><option value="2">3 · schwer</option></select>
+        <button class="knopf" type="button" data-drucken>Drucken</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="huelle">
+  <span>HACKERMANS CAVE · ein EDU Breakout von <a href="https://mius.ch/werkstueck/edubreakout-hakerman.html">MIus</a></span>
+  <span>Fehler gefunden? Melde sie an info@mius.ch · <a href="https://mius.ch/datenschutz.html">Datenschutz</a> · <a href="https://mius.ch/impressum.html">Impressum</a></span>
+</div></footer>
+</body>
+</html>

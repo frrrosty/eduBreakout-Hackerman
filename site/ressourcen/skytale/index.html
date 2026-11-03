@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Skytale · Hackermans Cave</title>
+<meta name="description" content="Hackermans Cave: die Begleitseite zum EDU Breakout «Hackerman», einem Escape-Spiel zur Informatik im Zyklus 2.">
+<link rel="icon" href="../../assets/fackel.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/cave.css">
+<script src="../../assets/cave.js" defer></script>
+</head>
+<body>
+<header class="huelle kopf">
+  <canvas class="fackel" aria-hidden="true"></canvas>
+  <div class="titel">
+    <div class="h1"><a href="../../">Hackermans Cave</a></div>
+    <p>Eine Begleitseite zum EDU Breakout</p>
+  </div>
+  <canvas class="fackel" aria-hidden="true"></canvas>
+</header>
+<nav class="huelle menue" aria-label="Hauptmenü"><a class="knopf" href="../../">Videobotschaft</a> <a class="knopf" href="../../ressourcen/" aria-current="page">Ressourcen</a></nav>
+<main class="huelle">
+<section class="fenster">
+  <h2>Skytale</h2>
+  <p>Die Spartaner wickelten einen Lederstreifen um einen Stab und schrieben der Länge nach darauf. Abgewickelt sieht der Streifen wie ein Buchstabensalat aus. Lesen kann ihn nur, wer einen gleich dicken Stab hat.</p>
+  <div class="suche">
+    <label for="skytale-text" class="sr">Botschaft</label>
+    <input id="skytale-text" type="text" maxlength="60" value="TREFFPUNKT BEIM BRUNNEN" autocomplete="off" spellcheck="false">
+  </div>
+  <div class="steuerung">
+    <label for="skytale-dicke">Dicke des Stabs:</label>
+    <input id="skytale-dicke" type="range" min="2" max="8" value="4">
+    <span class="verschiebung" id="skytale-zahl" aria-live="polite">4</span>
+  </div>
+  <h3>Auf dem Stab</h3>
+  <div class="tabelle-huelle"><table class="skytale-stab" id="skytale-stab"></table></div>
+  <h3>Der abgewickelte Streifen</h3>
+  <p class="streifen" id="skytale-streifen"></p>
+  <p class="anzahl">Zum Basteln: Den Streifen ausdrucken, ausschneiden und um einen Stift wickeln.</p>
+  <div class="steuerung nicht-drucken"><button class="knopf" type="button" data-drucken>Drucken</button></div>
+</section>
+</main>
+<footer><div class="huelle">
+  <span>HACKERMANS CAVE · ein EDU Breakout von <a href="https://mius.ch/werkstueck/edubreakout-hakerman.html">MIus</a></span>
+  <span>Fehler gefunden? Melde sie an info@mius.ch · <a href="https://mius.ch/datenschutz.html">Datenschutz</a> · <a href="https://mius.ch/impressum.html">Impressum</a></span>
+</div></footer>
+</body>
+</html>

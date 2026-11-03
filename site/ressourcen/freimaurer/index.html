@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Freimaurer-Code · Hackermans Cave</title>
+<meta name="description" content="Hackermans Cave: die Begleitseite zum EDU Breakout «Hackerman», einem Escape-Spiel zur Informatik im Zyklus 2.">
+<link rel="icon" href="../../assets/fackel.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/cave.css">
+<script src="../../assets/cave.js" defer></script>
+</head>
+<body>
+<header class="huelle kopf">
+  <canvas class="fackel" aria-hidden="true"></canvas>
+  <div class="titel">
+    <div class="h1"><a href="../../">Hackermans Cave</a></div>
+    <p>Eine Begleitseite zum EDU Breakout</p>
+  </div>
+  <canvas class="fackel" aria-hidden="true"></canvas>
+</header>
+<nav class="huelle menue" aria-label="Hauptmenü"><a class="knopf" href="../../">Videobotschaft</a> <a class="knopf" href="../../ressourcen/" aria-current="page">Ressourcen</a></nav>
+<main class="huelle">
+<section class="fenster">
+  <h2>Freimaurer-Code</h2>
+  <p>Bei dieser Geheimschrift wird jeder Buchstabe durch die Form seines Feldes ersetzt. Die Felder kommen aus zwei Gittern und zwei Kreuzen. Ein Punkt zeigt, aus welchem Teil der Buchstabe stammt.</p>
+  <div class="pigpen-schluessel" id="pigpen-schluessel"></div>
+  <h3>Selber schreiben</h3>
+  <p>Tippe auf die Buchstaben und schreibe eine geheime Botschaft für deine Gruppe.</p>
+  <div class="pigpen-tasten nicht-drucken" id="pigpen-tasten"></div>
+  <div class="pigpen-text" id="pigpen-text" aria-live="polite"></div>
+  <div class="steuerung nicht-drucken">
+    <button class="knopf" type="button" id="pigpen-luecke">Abstand</button>
+    <button class="knopf" type="button" id="pigpen-zurueck">Zurück</button>
+    <button class="knopf" type="button" id="pigpen-leeren">Löschen</button>
+    <button class="knopf" type="button" data-drucken>Drucken</button>
+  </div>
+</section>
+</main>
+<footer><div class="huelle">
+  <span>HACKERMANS CAVE · ein EDU Breakout von <a href="https://mius.ch/werkstueck/edubreakout-hakerman.html">MIus</a></span>
+  <span>Fehler gefunden? Melde sie an info@mius.ch · <a href="https://mius.ch/datenschutz.html">Datenschutz</a> · <a href="https://mius.ch/impressum.html">Impressum</a></span>
+</div></footer>
+</body>
+</html>
